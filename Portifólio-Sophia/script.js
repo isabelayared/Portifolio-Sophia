@@ -1,14 +1,15 @@
-// --- GSAP Register Plugin
+// --- 1. REGISTRO DO GSAP
 if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
     gsap.registerPlugin(ScrollTrigger);
 }
 
 /* -----------------------
-   CURSOR PERSONALIZADO
+   2. CURSOR PERSONALIZADO
    ----------------------- */
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
-const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .swiper-slide, .btn, .primary-btn, .close-modal, .pdf-btn');
+const interactiveElements = document.querySelectorAll('a, button, .gallery-item, .btn, .primary-btn, .close-modal, .pdf-btn');
+const carouselSection = document.querySelector('.carousel-section');
 
 if (cursor && follower && window.matchMedia("(pointer: fine)").matches) {
     document.addEventListener('mousemove', (e) => {
@@ -20,55 +21,42 @@ if (cursor && follower && window.matchMedia("(pointer: fine)").matches) {
         el.addEventListener('mouseenter', () => follower.classList.add('cursor-active'));
         el.addEventListener('mouseleave', () => follower.classList.remove('cursor-active'));
     });
+
+    if (carouselSection) {
+        carouselSection.addEventListener('mouseenter', () => {
+            cursor.classList.add('cursor-hidden');
+            follower.classList.add('cursor-hidden');
+        });
+        carouselSection.addEventListener('mouseleave', () => {
+            cursor.classList.remove('cursor-hidden');
+            follower.classList.remove('cursor-hidden');
+        });
+    }
 }
 
 /* -----------------------
-   ENTRADA (HERO) COM GSAP
+   3. ANIMAÇÕES (Hero, Scroll, Tilt)
    ----------------------- */
 const timeline = gsap.timeline();
+timeline.from('.navbar', { y: -80, opacity: 0, duration: 0.9, ease: "power4.out" })
+        .from('.reveal-text', { y: 36, opacity: 0, duration: 0.9, stagger: 0.18, ease: "power3.out" }, "-=0.45")
+        .from('.hero-image', { x: 80, opacity: 0, duration: 1.1, ease: "power3.out" }, "-=0.9");
 
-timeline.from('.navbar', {
-    y: -80, opacity: 0, duration: 0.9, ease: "power4.out"
-})
-.from('.reveal-text', {
-    y: 36, opacity: 0, duration: 0.9, stagger: 0.18, ease: "power3.out"
-}, "-=0.45")
-.from('.hero-image', {
-    x: 80, opacity: 0, duration: 1.1, ease: "power3.out"
-}, "-=0.9");
-
-/* -----------------------
-   ANIMAÇÕES AO SCROLL
-   ----------------------- */
 if (typeof ScrollTrigger !== 'undefined') {
-    gsap.from(".gallery-item", {
-        scrollTrigger: { trigger: ".gallery-grid", start: "top 80%" },
-        y: 80, opacity: 0, duration: 0.9, stagger: 0.08, ease: "power3.out"
-    });
-
-    gsap.from(".about-text", {
-        scrollTrigger: { trigger: ".about-section", start: "top 75%" },
-        x: -40, opacity: 0, duration: 0.9, ease: "power3.out"
-    });
-
-    gsap.from(".stat-item", {
-        scrollTrigger: { trigger: ".stats", start: "top 85%" },
-        y: 40, opacity: 0, duration: 0.7, stagger: 0.18
-    });
+    gsap.from(".gallery-item", { scrollTrigger: { trigger: ".gallery-grid", start: "top 80%" }, y: 80, opacity: 0, duration: 0.9, stagger: 0.08, ease: "power3.out" });
+    gsap.from(".about-text", { scrollTrigger: { trigger: ".about-section", start: "top 75%" }, x: -40, opacity: 0, duration: 0.9, ease: "power3.out" });
+    gsap.from(".stat-item", { scrollTrigger: { trigger: ".stats", start: "top 85%" }, y: 40, opacity: 0, duration: 0.7, stagger: 0.18 });
 }
 
-/* -----------------------
-   VANILLA TILT (Galeria)
-   ----------------------- */
 if (typeof VanillaTilt !== 'undefined') {
-    VanillaTilt.init(document.querySelectorAll(".gallery-item"), {
-        max: 10, speed: 400, glare: true, "max-glare": 0.2, scale: 1.03
-    });
+    VanillaTilt.init(document.querySelectorAll(".gallery-item"), { max: 10, speed: 400, glare: true, "max-glare": 0.2, scale: 1.03 });
 }
 
 /* -----------------------
-   SWIPER (CARROSSEL)
+   4. SWIPER (Carrossel)
    ----------------------- */
+let isDragging = false;
+
 if (typeof Swiper !== 'undefined') {
     const swiper = new Swiper(".mySwiper", {
         slidesPerView: 'auto',
@@ -77,9 +65,13 @@ if (typeof Swiper !== 'undefined') {
         loop: true,
         autoplay: { delay: 2500, disableOnInteraction: false },
         speed: 800,
+        on: {
+            touchStart: function() { isDragging = false; },
+            sliderMove: function() { isDragging = true; },
+            touchMove: function() { isDragging = true; }
+        }
     });
     
-    // Pausa no hover
     const swiperEl = document.querySelector('.mySwiper');
     if (swiperEl) {
         swiperEl.addEventListener('mouseenter', () => swiper.autoplay.pause());
@@ -88,7 +80,7 @@ if (typeof Swiper !== 'undefined') {
 }
 
 /* -----------------------
-   SMOOTH SCROLL NAV
+   5. SMOOTH SCROLL
    ----------------------- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -106,58 +98,83 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* -----------------------
-   LÓGICA DO MODAL (CORRIGIDA)
+   6. LÓGICA DO MODAL (CORRIGIDA E BLINDADA)
    ----------------------- */
 const modal = document.getElementById("projectModal");
 const modalImg = document.getElementById("img01");
 const modalTitle = document.getElementById("modal-title");
 const modalDesc = document.getElementById("modal-desc");
-const modalLinkBtn = document.getElementById("modal-link-btn");
 const closeBtn = document.querySelector(".close-modal");
 const body = document.body;
 
 function openModal(element) {
-    if (!modal) return; 
-
-    // Pega a imagem
-    const img = element.querySelector('img');
-    
-    // Tenta pegar o título e descrição (seja da galeria ou do carrossel)
-    const titleEl = element.querySelector('h3');
-    const descEl = element.querySelector('p');
-
-    // Usa textContent em vez de innerText para ler elementos ocultos (display: none)
-    const title = titleEl ? titleEl.textContent : "Projeto"; 
-    const desc = descEl ? descEl.textContent : "Detalhes em breve";
-    
-    // Pega o LINK do atributo data-link
-    const projectLink = element.getAttribute('data-link');
-
-    // Preenche o modal
-    modalImg.src = img.src;
-    modalTitle.innerText = title; // Aqui no modal usamos innerText pois ele é visível
-    modalDesc.innerText = desc;
-
-    // Lógica do Botão: Atualiza o HREF
-    if (projectLink && projectLink !== "#" && projectLink !== "") {
-        modalLinkBtn.style.display = "inline-flex";
-        modalLinkBtn.href = projectLink;
-    } else {
-        modalLinkBtn.style.display = "none";
+    // 1. Se estiver arrastando, cancela
+    if (isDragging) {
+        isDragging = false; 
+        return;
     }
 
-    // Mostra o modal
+    if (!modal || !element) return; 
+    const img = element.querySelector('img');
+    if(!img) return;
+
+    // 2. Busca e limpa dados
+    const titleEl = element.querySelector('h3');
+    const descEl = element.querySelector('p');
+    const title = titleEl ? titleEl.textContent : "Projeto"; 
+    const desc = descEl ? descEl.textContent : "";
+    const projectLink = element.getAttribute('data-link');
+
+    // 3. Preenche visual
+    modalImg.src = img.src;
+    modalTitle.innerText = title; 
+    modalDesc.innerText = desc;
+
+    // 4. Lógica do Botão 
+    const currentBtn = document.getElementById("modal-link-btn");
+
+    if (currentBtn) {
+        if (projectLink && projectLink !== "#" && projectLink !== "") {
+            // Se tem link: Mostra e Configura
+            currentBtn.style.display = "inline-flex";
+            currentBtn.href = projectLink;
+            
+            // Sobrescreve o onclick diretamente (mais seguro que replaceChild)
+            currentBtn.onclick = function(e) {
+                e.preventDefault(); // Evita qualquer comportamento estranho padrão
+                window.open(projectLink, '_blank'); // Força nova aba
+            };
+        } else {
+            // Se NÃO tem link: Esconde completamente e limpa o clique
+            currentBtn.style.display = "none";
+            currentBtn.onclick = null;
+            currentBtn.href = "#";
+        }
+    }
+
+    // 5. Mostra Modal
     modal.classList.add('show');
     body.style.overflow = "hidden";
 }
+
 function closeModal() {
     if (!modal) return;
+    
+    // Esconde o modal
     modal.classList.remove('show');
     body.style.overflow = "auto";
-    setTimeout(() => { modalImg.src = ""; }, 400);
+    
+    // Limpeza extra para evitar bugs visuais na transição
+    setTimeout(() => { 
+        modalImg.src = "";
+        
+        // Garante que o botão resete ao fechar
+        const currentBtn = document.getElementById("modal-link-btn");
+        if(currentBtn) currentBtn.style.display = "none";
+        
+    }, 400);
 }
 
-// Event Listeners do Modal
 if (closeBtn) closeBtn.onclick = closeModal;
 
 window.onclick = function(event) {
