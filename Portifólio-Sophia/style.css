@@ -21,12 +21,15 @@ body {
 
 /* CURSOR */
 .cursor, .cursor-follower {
-    position: fixed; border-radius: 50%; pointer-events: none; z-index: 10005;
-    transform: translate(-50%, -50%); transition: transform 0.12s ease, background 0.25s ease;
+    position: fixed; border-radius: 50%; pointer-events: none !important; z-index: 10005;
+    transform: translate(-50%, -50%); transition: transform 0.12s ease, background 0.25s ease, opacity 0.3s ease;
 }
 .cursor { width: 8px; height: 8px; background: var(--primary); }
-.cursor-follower { width: 40px; height: 40px; border: 1px solid rgba(213, 41, 77, 0.5); background: transparent; transition: transform 0.15s ease-out; }
+.cursor-follower { width: 40px; height: 40px; border: 1px solid rgba(213, 41, 77, 0.5); background: transparent; transition: transform 0.15s ease-out, opacity 0.3s ease; }
 .cursor-active { transform: translate(-50%, -50%) scale(1.5); background: rgba(213, 41, 77, 0.08); border-color: transparent; }
+
+/* CLASSE PARA ESCONDER O CURSOR (Usada no JS) */
+.cursor-hidden { opacity: 0 !important; }
 
 /* Container & Base */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -113,29 +116,75 @@ a { text-decoration: none; color: inherit; }
 .carousel-section { padding: 70px 0; background: #fff; margin-top: 60px; }
 .swiper { width: 100%; padding: 12px 0 44px; }
 .swiper-wrapper { display: flex; align-items: center; }
-.swiper-slide { width: 260px; height: 340px; border-radius: 22px; overflow: hidden; box-shadow: 0 18px 36px rgba(0,0,0,0.06); background: #fff; cursor: pointer !important; }
-.mySwiper { cursor: grab !important; }
-.mySwiper:active { cursor: grabbing !important; }
+
+/* --- CORREÇÃO DO CURSOR --- */
+.swiper-container-custom,
+.swiper-wrapper,
+.swiper-slide,
+.swiper-slide img { 
+    cursor: grab !important; 
+}
+
+.swiper-container-custom:active,
+.swiper-wrapper:active,
+.swiper-slide:active,
+.swiper-slide:active img { 
+    cursor: grabbing !important; 
+}
+
+/* Tamanho e Estilo dos Slides */
+.swiper-slide { 
+    width: 260px; 
+    height: 340px; 
+    border-radius: 22px; 
+    overflow: hidden; 
+    box-shadow: 0 18px 36px rgba(0,0,0,0.06); 
+    background: #fff; 
+}
+
+/* CLASSE UTILITÁRIA PARA O JS ESCONDER O CURSOR PERSONALIZADO */
+.cursor-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
     .hero-content { grid-template-columns: 1fr; gap: 26px; text-align: center; }
     .hero-image { max-width: 360px; margin: 0 auto; }
-    .gallery-grid { grid-auto-rows: 220px; }
-    .gallery-item.large, .gallery-item.wide { grid-column: span 2; grid-row: span 1; }
 }
+
 @media (max-width: 768px) {
     * { cursor: auto !important; }
     .cursor, .cursor-follower { display: none !important; }
     .nav-link { display: none; }
     .hero-text h1 { font-size: 2.2rem; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: 14px; }
-    .gallery-item.large, .gallery-item.tall, .gallery-item.wide { grid-column: span 2; grid-row: span 1; }
-    .swiper-slide { width: 200px; height: 260px; }
     .modal-image-display { max-height: 50vh; }
     .close-modal { top: 15px; right: 20px; font-size: 36px; }
 }
-@media (max-width: 420px) {
-    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+
+/* RESPONSIVIDADE INSANA (MOBILE) */
+@media (max-width: 600px) {
+    /* Reseta o Grid para virar uma lista vertical limpa */
+    .gallery-grid { 
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    /* Remove as classes de tamanho especial no mobile */
+    .gallery-item.large, .gallery-item.tall, .gallery-item.wide { 
+        grid-column: auto; 
+        grid-row: auto; 
+        width: 100%;
+        height: 350px; 
+    }
+
+    .gallery-item .overlay {
+        opacity: 1; 
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 10%, transparent);
+    }
+
     .swiper-slide { width: 85%; }
 }
