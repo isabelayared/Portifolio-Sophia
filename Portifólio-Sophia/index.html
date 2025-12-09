@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
-<body data-barba="wrapper">
+<body>
 
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
@@ -122,8 +122,8 @@
         <section class="carousel-section">
             <div class="container">
                 <h2 class="section-title">Outros Projetos</h2>
-
-                <div class="swiper mySwiper">
+                
+                <div class="swiper mySwiper swiper-container-custom">
                     <div class="swiper-wrapper">
                         
                         <div class="swiper-slide" onclick="openModal(this)">
@@ -191,7 +191,7 @@
                         </div>
 
                         <div class="swiper-slide" onclick="openModal(this)">
-                            <img src="assets/vinho.jpeg" alt="Projeto 8">
+                            <img src="assets/vinho.jpeg" alt="Projeto 9">
                             <div class="hidden-info" style="display: none;">
                                 <h3>Vupt</h3>
                                 <p>Identidade Visual</p>
@@ -236,7 +236,531 @@
                     <a href="https://www.behance.net/sophidesiderio" target="_blank">Behance</a>
                 </div>
             </div>
-            <p class="copyright">© 2025  Desenvolvido por Sophia Desiderio e Isabela Yared. Feito com 💜.</p>
+            <p class="copyright">© 2025 Desenvolvido por Sophia Desiderio e Isabela Yared. Feito com 💜.</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content-wrapper">
+            <img class="modal-image-display" id="img01">
+            <div class="modal-info">
+                <h3 id="modal-title">Título do Projeto</h3>
+                <p id="modal-desc">Descrição do projeto</p>
+                <a id="modal-link-btn" href="#" target="_blank" class="btn primary-btn pdf-btn">
+                    <i class="fas fa-external-link-alt"></i> Ver Projeto Completo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sophia | Portfólio Designer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Sophia<span class="dot">.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="nav-link">Início</a></li>
+                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#contato" class="btn-contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="reveal-text">Olá, eu sou a <br><span class="texto-destaque">Sophia</span></h1>
+                    <p class="reveal-text delay-1">Através de cursos na Alura e de experiências práticas no desenvolvimento de peças gráficas e conteúdos para mídias sociais, aprimorei meu domínio em ferramentas como Illustrator, Photoshop, After Effects, Adobe Premiere e Figma.</p>
+                    
+                    <div class="hero-icons reveal-text delay-2">
+                        <a href="https://www.fecap.br/" target="_blank" class="icon-link"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://www.alura.com.br/" target="_blank" class="icon-link"><i class="fas fa-laptop-code"></i></a>
+                        <a href="#projetos" class="btn primary-btn">Ver Projetos <i class="fas fa-arrow-down"></i></a>
+                    </div>
+                </div>
+                
+                <div class="hero-image" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="assets/sophiafoto.jpeg" alt="Sophia Designer">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Projetos Selecionados</h2>
+                
+                <div class="gallery-grid">
+                    
+                    <div class="gallery-item large" data-tilt onclick="openModal(this)">
+                        <img src="assets/natura01.jpg" alt="Natura">
+                        <div class="overlay">
+                            <h3>Natura</h3>
+                            <p>Identidade Visual</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item tall" data-tilt onclick="openModal(this)">
+                        <img src="assets/redbull.jpg" alt="Redbull">
+                        <div class="overlay">
+                            <h3>RedBull</h3>
+                            <p>Campanha Instagram</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/Atividade Formativa 4 - Nike.jpg" alt="Nike">
+                        <div class="overlay">
+                            <h3>Nike</h3>
+                            <p>Campanha Nike</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)" >
+                        <img src="assets/Atividade Formativa 4 - Vans.jpg" alt="Vans">
+                        <div class="overlay">
+                            <h3>Vans</h3>
+                            <p>Campanha Vans</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item wide" data-tilt onclick="openModal(this)" data-link="https://www.canva.com/design/DAG69FSDXCo/98NswYBo8pEbs99iB82Zfg/view?utm_content=DAG69FSDXCo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=had513314d6">
+                        <img src="assets/wine4all.jpeg" alt="Risqué">
+                        <div class="overlay">
+                            <h3>Wine 4 All</h3>
+                            <p>Branding</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/Esmalte - Risqué.jpg" alt=" EsmalteRisqué">
+                        <div class="overlay">
+                            <h3>Risqué</h3>
+                            <p>Rebranding & Merch (Esmalte)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/adidas.jpeg" alt="Adidas">
+                        <div class="overlay">
+                            <h3>Adidas</h3>
+                            <p>Campanha Adidas</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <div class="container">
+                <h2 class="section-title">Outros Projetos</h2>
+                
+                <div class="swiper mySwiper swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/maquiagem.jpg" alt="Projeto 1">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Boca Rosa</h3>
+                                <p>Fotografia Publicitária</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Lixa - Risqué.jpg" alt="Projeto 2">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Risqué</h3>
+                                <p>Design de Produto</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Campanha - CVC.jpg" alt="Projeto 3">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>CVC</h3>
+                                <p>Campanha de Verão</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/dog.jpg" alt="Projeto 4">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Pet Love</h3>
+                                <p>Social Media</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/e-commercecityads.jpg" alt="Projeto 5">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>City Ads</h3>
+                                <p>E-commerce Design</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/kenko jusu.jpg" alt="Projeto 6">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Kenko Jusu</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Atividade 4 - Natura.jpg" alt="Projeto 7">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Natura</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)" data-link="https://www.canva.com/design/DAG69FSURxY/WA9leJnjacQ8cjjrTiD-Qw/view?utm_content=DAG69FSURxY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h98c0b3a9be">
+                            <img src="assets/vupt.jpeg" alt="Projeto 8">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Vupt</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/vinho.jpeg" alt="Projeto 9">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Vupt</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container about-container">
+                <div class="about-text">
+                    <h2>Sobre <span class="outline-text">Mim</span></h2>
+                    <p>Sou apaixonada pelo design e estou sempre disposta a explorar e aprender sobre outras áreas da publicidade e propaganda. Adoro me conectar com o universo criativo e as diversas oportunidades que ele oferece. Busco constantemente novos conhecimentos para aprimorar minhas habilidades e crescer profissionalmente.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="number">3+</span>
+                            <span class="label">Anos de Estudo</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">10+</span>
+                            <span class="label">Projetos Reais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="footer">
+        <div class="container footer-content">
+            <h2>Contato</h2>
+            <div class="contact-links">
+                <a href="mailto:sophiaaraujodesiderio@yahoo.com.br" class="contact-btn" target="_blank">
+                    sophiaaraujodesiderio@yahoo.com.br
+                </a>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/sophia-de-araujo-desiderio" target="_blank">LinkedIn</a>
+                    <a href="https://www.behance.net/sophidesiderio" target="_blank">Behance</a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Desenvolvido por Sophia Desiderio e Isabela Yared. Feito com 💜.</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content-wrapper">
+            <img class="modal-image-display" id="img01">
+            <div class="modal-info">
+                <h3 id="modal-title">Título do Projeto</h3>
+                <p id="modal-desc">Descrição do projeto</p>
+                <a id="modal-link-btn" href="#" target="_blank" class="btn primary-btn pdf-btn">
+                    <i class="fas fa-external-link-alt"></i> Ver Projeto Completo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sophia | Portfólio Designer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Sophia<span class="dot">.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="nav-link">Início</a></li>
+                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#contato" class="btn-contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 class="reveal-text">Olá, eu sou a <br><span class="texto-destaque">Sophia</span></h1>
+                    <p class="reveal-text delay-1">Através de cursos na Alura e de experiências práticas no desenvolvimento de peças gráficas e conteúdos para mídias sociais, aprimorei meu domínio em ferramentas como Illustrator, Photoshop, After Effects, Adobe Premiere e Figma.</p>
+                    
+                    <div class="hero-icons reveal-text delay-2">
+                        <a href="https://www.fecap.br/" target="_blank" class="icon-link"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://www.alura.com.br/" target="_blank" class="icon-link"><i class="fas fa-laptop-code"></i></a>
+                        <a href="#projetos" class="btn primary-btn">Ver Projetos <i class="fas fa-arrow-down"></i></a>
+                    </div>
+                </div>
+                
+                <div class="hero-image" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="assets/sophiafoto.jpeg" alt="Sophia Designer">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Projetos Selecionados</h2>
+                
+                <div class="gallery-grid">
+                    
+                    <div class="gallery-item large" data-tilt onclick="openModal(this)">
+                        <img src="assets/natura01.jpg" alt="Natura">
+                        <div class="overlay">
+                            <h3>Natura</h3>
+                            <p>Identidade Visual</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item tall" data-tilt onclick="openModal(this)">
+                        <img src="assets/redbull.jpg" alt="Redbull">
+                        <div class="overlay">
+                            <h3>RedBull</h3>
+                            <p>Campanha Instagram</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/Atividade Formativa 4 - Nike.jpg" alt="Nike">
+                        <div class="overlay">
+                            <h3>Nike</h3>
+                            <p>Campanha Nike</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)" >
+                        <img src="assets/Atividade Formativa 4 - Vans.jpg" alt="Vans">
+                        <div class="overlay">
+                            <h3>Vans</h3>
+                            <p>Campanha Vans</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item wide" data-tilt onclick="openModal(this)" data-link="https://www.canva.com/design/DAG69FSDXCo/98NswYBo8pEbs99iB82Zfg/view?utm_content=DAG69FSDXCo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=had513314d6">
+                        <img src="assets/wine4all.jpeg" alt="Risqué">
+                        <div class="overlay">
+                            <h3>Wine 4 All</h3>
+                            <p>Branding</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/Esmalte - Risqué.jpg" alt=" EsmalteRisqué">
+                        <div class="overlay">
+                            <h3>Risqué</h3>
+                            <p>Rebranding & Merch (Esmalte)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-tilt onclick="openModal(this)">
+                        <img src="assets/adidas.jpeg" alt="Adidas">
+                        <div class="overlay">
+                            <h3>Adidas</h3>
+                            <p>Campanha Adidas</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <div class="container">
+                <h2 class="section-title">Outros Projetos</h2>
+                
+                <div class="swiper mySwiper swiper-container-custom">
+                    <div class="swiper-wrapper">
+                        
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/maquiagem.jpg" alt="Projeto 1">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Boca Rosa</h3>
+                                <p>Fotografia Publicitária</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Lixa - Risqué.jpg" alt="Projeto 2">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Risqué</h3>
+                                <p>Design de Produto</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Campanha - CVC.jpg" alt="Projeto 3">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>CVC</h3>
+                                <p>Campanha de Verão</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/dog.jpg" alt="Projeto 4">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Pet Love</h3>
+                                <p>Social Media</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/e-commercecityads.jpg" alt="Projeto 5">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>City Ads</h3>
+                                <p>E-commerce Design</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/kenko jusu.jpg" alt="Projeto 6">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Kenko Jusu</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/Atividade 4 - Natura.jpg" alt="Projeto 7">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Natura</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)" data-link="https://www.canva.com/design/DAG69FSURxY/WA9leJnjacQ8cjjrTiD-Qw/view?utm_content=DAG69FSURxY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h98c0b3a9be">
+                            <img src="assets/vupt.jpeg" alt="Projeto 8">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Vupt</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" onclick="openModal(this)">
+                            <img src="assets/vinho.jpeg" alt="Projeto 9">
+                            <div class="hidden-info" style="display: none;">
+                                <h3>Vupt</h3>
+                                <p>Identidade Visual</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container about-container">
+                <div class="about-text">
+                    <h2>Sobre <span class="outline-text">Mim</span></h2>
+                    <p>Sou apaixonada pelo design e estou sempre disposta a explorar e aprender sobre outras áreas da publicidade e propaganda. Adoro me conectar com o universo criativo e as diversas oportunidades que ele oferece. Busco constantemente novos conhecimentos para aprimorar minhas habilidades e crescer profissionalmente.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="number">3+</span>
+                            <span class="label">Anos de Estudo</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">10+</span>
+                            <span class="label">Projetos Reais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="footer">
+        <div class="container footer-content">
+            <h2>Contato</h2>
+            <div class="contact-links">
+                <a href="mailto:sophiaaraujodesiderio@yahoo.com.br" class="contact-btn" target="_blank">
+                    sophiaaraujodesiderio@yahoo.com.br
+                </a>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/sophia-de-araujo-desiderio" target="_blank">LinkedIn</a>
+                    <a href="https://www.behance.net/sophidesiderio" target="_blank">Behance</a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Desenvolvido por Sophia Desiderio e Isabela Yared. Feito com 💜.</p>
         </div>
     </footer>
 
