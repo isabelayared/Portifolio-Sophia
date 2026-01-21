@@ -491,7 +491,7 @@ a {
     align-items: center; 
 }
 
-/* --- CORREÇÃO DO CURSOR --- */
+/* ---CURSOR --- */
 .swiper-container-custom,
 .swiper-wrapper,
 .swiper-slide,
@@ -561,4 +561,5 @@ a {
 
     .swiper-slide { width: 85%; }
 }
+
 
