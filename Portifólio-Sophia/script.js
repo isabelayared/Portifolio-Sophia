@@ -1,10 +1,10 @@
-// --- 1. REGISTRO DO GSAP
+// REGISTRO DO GSAP
 if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
     gsap.registerPlugin(ScrollTrigger);
 }
 
 /* -----------------------
-   2. CURSOR PERSONALIZADO
+   CURSOR PERSONALIZADO
    ----------------------- */
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
@@ -35,7 +35,7 @@ if (cursor && follower && window.matchMedia("(pointer: fine)").matches) {
 }
 
 /* -----------------------
-   3. ANIMAÇÕES (Hero, Scroll, Tilt)
+   ANIMAÇÕES (Hero, Scroll, Tilt)
    ----------------------- */
 const timeline = gsap.timeline();
 timeline.from('.navbar', { y: -80, opacity: 0, duration: 0.9, ease: "power4.out" })
@@ -53,7 +53,7 @@ if (typeof VanillaTilt !== 'undefined') {
 }
 
 /* -----------------------
-   4. SWIPER (Carrossel)
+   SWIPER (Carrossel)
    ----------------------- */
 let isDragging = false;
 
@@ -80,7 +80,7 @@ if (typeof Swiper !== 'undefined') {
 }
 
 /* -----------------------
-   5. SMOOTH SCROLL
+   SMOOTH SCROLL
    ----------------------- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -98,7 +98,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* -----------------------
-   6. LÓGICA DO MODAL (CORRIGIDA E BLINDADA)
+   LÓGICA DO MODAL
    ----------------------- */
 const modal = document.getElementById("projectModal");
 const modalImg = document.getElementById("img01");
@@ -184,3 +184,4 @@ window.onclick = function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === "Escape" && modal.classList.contains('show')) closeModal();
 });
+
