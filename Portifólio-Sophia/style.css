@@ -236,7 +236,7 @@ a {
     } 
 }
 
-/* Portfolio */
+/* Portifolio */
 .portfolio { 
     padding: 100px 0; 
     background: #fff; 
@@ -405,7 +405,7 @@ a {
     } 
 }
 
-/* About & Footer */
+/* About e Footer */
 .about-section { 
     padding: 100px 0; 
     background: var(--text-color); 
@@ -537,7 +537,6 @@ a {
     .close-modal { top: 15px; right: 20px; font-size: 36px; }
 }
 
-/* RESPONSIVIDADE INSANA (MOBILE) */
 @media (max-width: 600px) {
     /* Reseta o Grid para virar uma lista vertical limpa */
     .gallery-grid { 
@@ -562,3 +561,4 @@ a {
 
     .swiper-slide { width: 85%; }
 }
+
