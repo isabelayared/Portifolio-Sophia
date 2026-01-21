@@ -164,7 +164,6 @@ function closeModal() {
     modal.classList.remove('show');
     body.style.overflow = "auto";
     
-    // Limpeza extra para evitar bugs visuais na transição
     setTimeout(() => { 
         modalImg.src = "";
         
@@ -184,4 +183,5 @@ window.onclick = function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === "Escape" && modal.classList.contains('show')) closeModal();
 });
+
 
